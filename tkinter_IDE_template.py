@@ -2,11 +2,36 @@ import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 from idlelib.colorizer import ColorDelegator
 from idlelib.percolator import Percolator
-
+from tkinter import filedialog
 
 root = tk.Tk()
 root.geometry('600x600')
 root.title('Tkinter Simple IDE')
+
+
+def saveFile():
+    file = filedialog.asksaveasfile(defaultextension='.py',
+                                    filetypes=[
+                                        ('Python file', '.py'),
+                                        ('Text file', '.txt'),
+                                        ('HTML file', '.html'),
+                                        ('All files', '.*')
+                                    ])
+    if file is None:
+        return
+    filetext = str(tex_pad.get('1.0', tk.END))
+    file.write(filetext)
+    file.close()
+
+def insert_widget_code(code):
+    tex_pad.insert(tk.INSERT, code)
+
+def run_code(code):
+    return exec(code)
+
+def btn_clear():
+    tex_pad.delete('1.0', tk.END)
+
 
 Widgets =[
     ["Create\nWindow", "import tkinter as tk\n\nroot = tk.Tk()\nroot.title('My Window')\nroot.geometry('600x600')\n\nroot.mainloop()"],
