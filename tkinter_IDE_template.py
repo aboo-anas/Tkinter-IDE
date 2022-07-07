@@ -86,5 +86,16 @@ Percolator(tex_pad).insertfilter(ColorDelegator())
 
 main_frame.pack(side=tk.LEFT, fill=tk.Y)
 
+
+#Create save menu
+menubar = tk.Menu(root)
+filemenu =tk.Menu(menubar, tearoff=False)
+filemenu.add_command(label="Save program", command= lambda: saveFile())
+filemenu.add_separator()
+filemenu.add_command(label="Exit", command= quit)
+menubar.add_cascade(label="File", menu=filemenu)
+root.config(menu=menubar)
+
+
     
 root.mainloop()
