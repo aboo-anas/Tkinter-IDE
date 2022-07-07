@@ -1,4 +1,7 @@
 import tkinter as tk
+from tkinter.scrolledtext import ScrolledText
+from idlelib.colorizer import ColorDelegator
+from idlelib.percolator import Percolator
 
 
 root = tk.Tk()
@@ -46,5 +49,17 @@ for i in Widgets:
     btn.pack(pady= 5, fill=tk.X)
     wn+=1
 
+#create a text area for entering codes
+main_frame = tk.Frame(root)
 
+tex_pad = ScrolledText(main_frame, height=100, font=('Comic Sans MS', 12), bd=10, relief="raised")
+tex_pad.pack(fill=tk.BOTH)
+
+
+#Make python keyword highlight
+Percolator(tex_pad).insertfilter(ColorDelegator())
+
+main_frame.pack(side=tk.LEFT, fill=tk.Y)
+
+    
 root.mainloop()
