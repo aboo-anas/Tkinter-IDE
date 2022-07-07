@@ -66,13 +66,13 @@ clear_btn = tk.Button(widget_frame, text='Clear', bg='#272727', fg='red', font=(
 clear_btn.pack(pady= 5, fill=tk.X)
 
 #Create Widget buttons
-wn = 0
+widget_index = 0
 for i in Widgets:
 
-    btn = tk.Button(widget_frame, text=Widgets[wn][0], bg='#272727', fg='yellow', font=('Bold', 13),
-                 command= lambda wn = wn: insert_widget_code(Widgets[wn][1]))
+    btn = tk.Button(widget_frame, text=Widgets[widget_index][0], bg='#272727', fg='yellow', font=('Bold', 13),
+                 command= lambda wn = wn: insert_widget_code(Widgets[widget_index][1]))
     btn.pack(pady= 5, fill=tk.X)
-    wn+=1
+    widget_index+=1
 
 #create a text area for entering codes
 main_frame = tk.Frame(root)
@@ -80,12 +80,10 @@ main_frame = tk.Frame(root)
 tex_pad = ScrolledText(main_frame, height=100, font=('Comic Sans MS', 12), bd=10, relief="raised")
 tex_pad.pack(fill=tk.BOTH)
 
-
 #Make python keyword highlight
 Percolator(tex_pad).insertfilter(ColorDelegator())
 
 main_frame.pack(side=tk.LEFT, fill=tk.Y)
-
 
 #Create save menu
 menubar = tk.Menu(root)
@@ -95,7 +93,6 @@ filemenu.add_separator()
 filemenu.add_command(label="Exit", command= quit)
 menubar.add_cascade(label="File", menu=filemenu)
 root.config(menu=menubar)
-
 
     
 root.mainloop()
